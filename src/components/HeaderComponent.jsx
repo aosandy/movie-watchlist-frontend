@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import StickyHeader from 'react-sticky-header';
 import 'react-sticky-header/styles.css';
+import {SearchField} from '@adobe/react-spectrum'
 
 class HeaderComponent extends Component {
     constructor(props) {
         super(props);
-
     }
 
     render() {
@@ -13,7 +13,7 @@ class HeaderComponent extends Component {
             <div>
                 <StickyHeader
                     header = {                    
-                        <div>
+                        <div>   
                             <header>
                                 <nav className = 'navbar navbar-expand-md navbar-dark bg-black'>
                                 <div><a href = '/' className = 'navbar-brand'>Aosandy Movie Catalog</a></div>
