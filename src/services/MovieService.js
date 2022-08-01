@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 const API_BASE_URL_LOCAL = 'http://localhost:8080/';
-const API_BASE_URL = 'https://java-mega-market.herokuapp.com/offers';
 
 class MovieService {
 
@@ -11,6 +10,10 @@ class MovieService {
 
     getMovieById(id) {
         return axios.get(API_BASE_URL_LOCAL + id);
+    }
+
+    getMoviesByKeyword(keyword) {
+        return axios.get(API_BASE_URL_LOCAL + 'search', { params: { keyword: keyword } });
     }
 }
 

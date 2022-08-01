@@ -26,7 +26,7 @@ class MovieComponent extends Component {
                             <h3 className = "text-center"> { this.state.movie.name }</h3>
                         </div>
                         <div className = "row">
-                            <img src={this.state.movie.posterUrlPreview}/>
+                            <img src={this.state.movie.posterUrl}/>
                         </div>
                     </div>
 
