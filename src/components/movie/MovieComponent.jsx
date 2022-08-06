@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import MovieService from '../services/MovieService';
+import MovieService from '../../services/MovieService';
 
 class MovieComponent extends Component {
     constructor(props) {

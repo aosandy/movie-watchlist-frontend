@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL_LOCAL = 'http://localhost:8080/';
+const API_BASE_URL_LOCAL = 'http://localhost:8080/films/';
 
 class MovieService {
 

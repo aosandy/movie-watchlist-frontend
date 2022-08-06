@@ -3,9 +3,13 @@ import {Helmet} from 'react-helmet';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import HeaderComponent from './components/HeaderComponent';
 import FooterComponent from './components/FooterComponent';
-import ListMovieComponent from './components/ListMovieComponent';
-import MovieComponent from './components/MovieComponent';
-import SearchMovieComponent from './components/SearchMovieComponent';
+import ListMovieComponent from './components/movie/ListMovieComponent';
+import MovieComponent from './components/movie/MovieComponent';
+import SearchMovieComponent from './components/movie/SearchMovieComponent';
+
+import RegistrationComponent from './components/auth/RegistrationComponent';
+import LoginComponent from './components/auth/LoginComponent';
+import ProfileComponent from './components/ProfileComponent';
 
 function App() {
   return (
@@ -15,14 +19,16 @@ function App() {
       </Helmet>
       <Router>
           <HeaderComponent />
-          <br/><br/>
+          <br/><br/><br/>
           <div>
               <Switch>
-                  <Route path = '/' exact component = {ListMovieComponent}></Route>
-                  <Route path = '/premieres' component = {ListMovieComponent}></Route>
-                  <Route path = "/search" exact component = {SearchMovieComponent}></Route>
-                  <Route path = "/:id" exact component = {MovieComponent}></Route>
-
+                  <Route exact path = '/'  component = {ListMovieComponent}></Route>
+                  <Route exact path = '/films/premieres' component = {ListMovieComponent}></Route>
+                  <Route exact path = "/films/search"  component = {SearchMovieComponent}></Route>
+                  <Route exact path = "/films/:id" component = {MovieComponent}></Route>
+                  <Route exact path = "/auth/reg" component = {RegistrationComponent}></Route>
+                  <Route exact path = "/auth/login" component = {LoginComponent}></Route>
+                  <Route exact path = "/profile" component = {ProfileComponent}></Route>
               </Switch>
           </div>
           <FooterComponent />

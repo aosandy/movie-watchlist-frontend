@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import MovieService from '../services/MovieService';
+import MovieService from '../../services/MovieService';
 
 class ListMovieComponent extends Component {
     constructor(props) {
@@ -21,7 +21,7 @@ class ListMovieComponent extends Component {
     }
 
     viewMovie(id){
-        this.props.history.push(`/${id}`);
+        this.props.history.push(`/films/${id}`);
     }
 
     inputHandler = (event) => {
@@ -30,7 +30,7 @@ class ListMovieComponent extends Component {
 
     search() {
         this.props.history.push({
-            pathname: '/search',
+            pathname: '/films/search',
             search: '?keyword=' + this.state.keyword
           })
     }

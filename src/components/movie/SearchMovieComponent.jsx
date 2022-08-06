@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import MovieService from '../services/MovieService';
+import MovieService from '../../services/MovieService';
 
 class SearchMovieComponent extends Component {
     constructor(props) {
@@ -19,7 +19,7 @@ class SearchMovieComponent extends Component {
     }
 
     viewMovie(id){
-        this.props.history.push(`/${id}`);
+        this.props.history.push(`/films/${id}`);
     }
 
     render() {
