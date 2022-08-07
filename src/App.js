@@ -10,6 +10,7 @@ import SearchMovieComponent from './components/movie/SearchMovieComponent';
 import RegistrationComponent from './components/auth/RegistrationComponent';
 import LoginComponent from './components/auth/LoginComponent';
 import ProfileComponent from './components/ProfileComponent';
+import SavedMoviesComponent from './components/user/SavedMoviesComponent';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
                   <Route exact path = "/auth/reg" component = {RegistrationComponent}></Route>
                   <Route exact path = "/auth/login" component = {LoginComponent}></Route>
                   <Route exact path = "/profile" component = {ProfileComponent}></Route>
+                  <Route exact path = "/saved" component = {SavedMoviesComponent}></Route>
               </Switch>
           </div>
           <FooterComponent />

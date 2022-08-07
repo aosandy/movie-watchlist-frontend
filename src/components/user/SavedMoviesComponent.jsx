@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import MovieService from '../../services/MovieService';
+import UserService from '../../services/UserService';
 
-class ListMovieComponent extends Component {
+class SavedMoviesComponent extends Component {
     constructor(props) {
         super(props)
 
@@ -15,9 +15,11 @@ class ListMovieComponent extends Component {
     }
 
     componentDidMount() {
-        MovieService.getPremieres().then((res) => {
+        UserService.getUserMarks().then((res) => {
+            console.log(JSON.stringify(res.data));
             this.setState({ movies: res.data});
         });
+        console.log(JSON.stringify(this.movies));
     }
 
     viewMovie(id){
@@ -39,7 +41,6 @@ class ListMovieComponent extends Component {
         const movies = this.state.movies.map((movie) => 
             <li key = {movie.id} className = 'zoom' onClick={ () => this.viewMovie(movie.id)}>
                 <img src={movie.posterUrlPreview}/> 
-                console.log(movie.posterUrlPreview);
                 <h2>{movie.name}</h2>
             </li>
         );
@@ -64,4 +65,4 @@ class ListMovieComponent extends Component {
     }
 }
 
-export default ListMovieComponent;
+export default SavedMoviesComponent;
