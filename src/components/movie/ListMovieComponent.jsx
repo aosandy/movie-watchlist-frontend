@@ -6,12 +6,8 @@ class ListMovieComponent extends Component {
         super(props)
 
         this.state = {
-            keyword: '',
             movies: []
         }
-        this.inputHandler = this.inputHandler.bind(this);
-        this.search = this.search.bind(this);
-
     }
 
     componentDidMount() {
@@ -20,42 +16,20 @@ class ListMovieComponent extends Component {
         });
     }
 
-    viewMovie(id){
+    viewMovie(id) {
         this.props.history.push(`/films/${id}`);
-    }
-
-    inputHandler = (event) => {
-        this.setState({keyword: event.target.value.toLowerCase()});
-    }
-
-    search() {
-        this.props.history.push({
-            pathname: '/films/search',
-            search: '?keyword=' + this.state.keyword
-          })
     }
 
     render() {
         const movies = this.state.movies.map((movie) => 
             <li key = {movie.id} className = 'zoom' onClick={ () => this.viewMovie(movie.id)}>
                 <img src={movie.posterUrlPreview}/> 
-                console.log(movie.posterUrlPreview);
                 <h2>{movie.name}</h2>
             </li>
         );
 
         return (
             <div>
-                <form action="" onSubmit={this.search}>
-                    <input
-                        required
-                        placeholder="Найти фильм..."
-                        type="text"
-                        onChange={this.inputHandler}
-                    />
-                    <button type='submit'>Найти</button>
-                </form>
-
                 <div className = 'movies'>
                     {movies}
                 </div>

@@ -11,7 +11,7 @@ class AuthService {
     login(loginRequest) {
         return axios.post(API_BASE_URL_LOCAL + 'login', loginRequest).then(res => {
             if (res.data.accessToken) {
-                localStorage.setItem("user", JSON.stringify(res.data));
+                localStorage.setItem('user', JSON.stringify(res.data));
             }
 
             return res.data;
@@ -19,7 +19,7 @@ class AuthService {
     }
 
     logout() {
-        localStorage.removeItem("user");
+        localStorage.removeItem('user');
     }
 
     getCurrentUser() {

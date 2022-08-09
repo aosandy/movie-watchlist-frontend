@@ -19,7 +19,7 @@ function App() {
         <style>{'body { background-color: black; }'}</style>
       </Helmet>
       <Router>
-          <HeaderComponent />
+        <HeaderComponent />
           <br/><br/><br/>
           <div>
               <Switch>
