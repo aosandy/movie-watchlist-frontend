@@ -3,8 +3,7 @@ import {BrowserRouter as Link, Router } from 'react-router-dom';
 import StickyHeader from 'react-sticky-header';
 import {useHistory} from "react-router-dom";
 import 'react-sticky-header/styles.css';
-<<<<<<< HEAD
-import { createBrowserHistory } from "history";
+import { createBrowserHistory } from 'history';
 import AuthService from '../services/AuthService';
 
 const HeaderComponent = (props) => {
@@ -90,31 +89,6 @@ const HeaderComponent = (props) => {
             </StickyHeader>
         </div>
     );
-=======
-import {SearchField} from '@adobe/react-spectrum'
-
-class HeaderComponent extends Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        return (
-            <div>
-                <StickyHeader
-                    header = {                    
-                        <div>   
-                            <header>
-                                <nav className = 'navbar navbar-expand-md navbar-dark bg-black'>
-                                <div><a href = '/' className = 'navbar-brand'>Aosandy Movie Catalog</a></div>
-                                </nav>
-                            </header>
-                        </div>}
-                >
-                </StickyHeader>
-            </div>
-        );
->>>>>>> aad94672f785be63e5394d2cd83d4d946834bc64
-    }
+}
 
 export default HeaderComponent;

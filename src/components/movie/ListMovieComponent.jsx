@@ -9,12 +9,8 @@ class ListMovieComponent extends Component {
             keyword: '',
             movies: []
         }
-<<<<<<< HEAD:src/components/movie/ListMovieComponent.jsx
-=======
         this.inputHandler = this.inputHandler.bind(this);
         this.search = this.search.bind(this);
-
->>>>>>> aad94672f785be63e5394d2cd83d4d946834bc64:src/components/ListMovieComponent.jsx
     }
 
     componentDidMount() {
@@ -48,8 +44,6 @@ class ListMovieComponent extends Component {
 
         return (
             <div>
-<<<<<<< HEAD:src/components/movie/ListMovieComponent.jsx
-=======
                 <form action="" onSubmit={this.search}>
                     <input
                         required
@@ -59,8 +53,6 @@ class ListMovieComponent extends Component {
                     />
                     <button type='submit'>Найти</button>
                 </form>
-
->>>>>>> aad94672f785be63e5394d2cd83d4d946834bc64:src/components/ListMovieComponent.jsx
                 <div className = 'movies'>
                     {movies}
                 </div>
