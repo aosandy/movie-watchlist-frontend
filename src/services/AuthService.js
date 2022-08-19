@@ -1,15 +1,15 @@
 import axios from 'axios';
 
-const API_BASE_URL_LOCAL = 'http://localhost:8080/auth/';
+const AUTH_API_BASE_URL = process.env.API_BASE_URL + 'auth/';
 
 class AuthService {
 
     register(registrationRequest) {
-        return axios.post(API_BASE_URL_LOCAL + 'reg', registrationRequest);
+        return axios.post(AUTH_API_BASE_URL + 'reg', registrationRequest);
     }
 
     login(loginRequest) {
-        return axios.post(API_BASE_URL_LOCAL + 'login', loginRequest).then(res => {
+        return axios.post(AUTH_API_BASE_URL + 'login', loginRequest).then(res => {
             if (res.data.accessToken) {
                 localStorage.setItem('user', JSON.stringify(res.data));
             }
