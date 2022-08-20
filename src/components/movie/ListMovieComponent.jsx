@@ -44,15 +44,6 @@ class ListMovieComponent extends Component {
 
         return (
             <div>
-                <form action="" onSubmit={this.search}>
-                    <input
-                        required
-                        placeholder="Найти фильм..."
-                        type="text"
-                        onChange={this.inputHandler}
-                    />
-                    <button type='submit'>Найти</button>
-                </form>
                 <div className = 'movies'>
                     {movies}
                 </div>
