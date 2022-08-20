@@ -10,6 +10,8 @@ const HeaderComponent = (props) => {
     let keyword = '';
     let currentUser = AuthService.getCurrentUser();
     let history = useHistory();
+    console.log(JSON.stringify(currentUser));
+
 
     const logout = () => {
         AuthService.logout();
@@ -33,13 +35,13 @@ const HeaderComponent = (props) => {
                 header = {                    
                     <div>   
                         <header>
-                            <nav className = 'navbar navbar-expand-md navbar-dark bg-black d-flex justify-content-between flex-column flex-md-row p-3'>
+                            <nav className = 'navbar navbar-expand-md navbar-dark navbar-custom d-flex justify-content-between flex-column flex-md-row p-3'>
                             <div>
                                 <a href = '/' className = 'navbar-brand'>Aosandy Movie Catalog</a>
                             </div>
-                            <form onSubmit={search}>
+                            <form className='form-inline' onSubmit={search}>
                                 <input
-                                    className='search'
+                                    className='search '
                                     required
                                     placeholder="Найти фильм..."
                                     type="text"
@@ -50,19 +52,34 @@ const HeaderComponent = (props) => {
                                 {currentUser ? (
                                     <div className='navbar-nav ml-auto'>
                                         <li className='nav-item'>
-                                            <a href="/saved" className="nav-link">
-                                                Закладки
+                                            <a href="/saved">
+                                                <img
+                                                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Bookmark_icon_white.svg/1200px-Bookmark_icon_white.svg.png"
+                                                    alt="profile-img"
+                                                    className="nav-link header-icon"
+                                                />
                                             </a>
                                         </li>
                                         <li className='nav-item'>
-                                            <a href="/profile" className="nav-link">
-                                                {currentUser.username}
-                                            </a>
-                                        </li>
-                                        <li className='nav-item'>
-                                            <a href='/' className='nav-link' onClick={logout}>
-                                                Logout
-                                            </a>
+                                            <div className='dropdown'>
+                                                <img
+                                                    src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+                                                    alt="profile-img"
+                                                    class="header-icon dropdown-toggle"
+                                                    type="button" id="dropdownMenuUser"
+                                                    data-bs-toggle="dropdown"
+                                                    aria-expanded="false"
+                                                />
+                                                <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="dropdownMenuUser">
+                                                    <li><a class="dropdown-item" href='/'>
+                                                        {currentUser.username}
+                                                        <br/>
+                                                        Настройки
+                                                    </a></li>
+                                                    <li><hr class="dropdown-divider"/></li>
+                                                    <li><a class="dropdown-item" href='/' onClick={logout}>Выход</a></li>
+                                                </ul>
+                                            </div>
                                         </li>
                                     </div>
                                 ) : (

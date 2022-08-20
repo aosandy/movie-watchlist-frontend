@@ -11,6 +11,7 @@ class AuthService {
     login(loginRequest) {
         return axios.post(AUTH_API_BASE_URL + 'login', loginRequest).then(res => {
             if (res.data.accessToken) {
+                console.log(JSON.stringify(res.data));
                 localStorage.setItem('user', JSON.stringify(res.data));
             }
 

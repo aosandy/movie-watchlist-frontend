@@ -1,57 +1,212 @@
 import React, { Component } from 'react';
+import Form from "react-validation/build/form";
+import Input from "react-validation/build/input";
+import CheckButton from "react-validation/build/button";
+import { isEmail } from "validator";
+
 import AuthService from '../../services/AuthService';
+
+const required = value => {
+    if (!value) {
+      return (
+        <div className="alert alert-danger" role="alert">
+          This field is required!
+        </div>
+      );
+    }
+  };
+  
+  const email = value => {
+    if (!isEmail(value)) {
+      return (
+        <div className="alert alert-danger" role="alert">
+          This is not a valid email.
+        </div>
+      );
+    }
+  };
+  
+  const vusername = value => {
+    if (value.length < 3 || value.length > 20) {
+      return (
+        <div className="alert alert-danger" role="alert">
+          The username must be between 3 and 20 characters.
+        </div>
+      );
+    }
+  };
+  
+  const vpassword = value => {
+    if (value.length < 6 || value.length > 40) {
+      return (
+        <div className="alert alert-danger" role="alert">
+          The password must be between 6 and 40 characters.
+        </div>
+      );
+    }
+  };
 
 class RegistrationComponent extends Component {
     constructor(props) {
-        super(props)
+        super(props);
+        this.handleRegister = this.handleRegister.bind(this);
+        this.onChangeUsername = this.onChangeUsername.bind(this);
+        this.onChangeEmail = this.onChangeEmail.bind(this);
+        this.onChangePassword = this.onChangePassword.bind(this);
 
         this.state = {
-        }
-        this.handleSubmit = this.handleSubmit.bind(this);
-
+        username: "",
+        email: "",
+        password: "",
+        successful: false,
+        message: ""
+        };
     }
 
-    handleSubmit = (event) => {
-
-        event.preventDefault();
-    
-        var { username, email, password } = document.forms[0];
-
-        var registrationRequest = {
-            username: username.value,
-            email: email.value,
-            password: password.value
-        };
-
-        AuthService.register(registrationRequest).then(() => {
-            this.props.history.push('/');
-            window.location.reload();
+    onChangeUsername(e) {
+        this.setState({
+        username: e.target.value
         });
-      }
+    }
+
+    onChangeEmail(e) {
+        this.setState({
+        email: e.target.value
+        });
+    }
+
+    onChangePassword(e) {
+        this.setState({
+        password: e.target.value
+        });
+    }
+
+    handleRegister(e) {
+        e.preventDefault();
+
+        this.setState({
+        message: "",
+        successful: false
+        });
+
+        this.form.validateAll();
+
+        if (this.checkBtn.context._errors.length === 0) {
+        
+            let registerRequest = {
+                username: this.state.username,
+                email: this.state.email,
+                password: this.state.password
+            }
+            AuthService.register(registerRequest).then(
+                response => {
+                    this.setState({
+                        message: response.data.message,
+                        successful: true
+                    });
+                    this.props.history.push('/');
+            },
+                error => {
+                    const resMessage =
+                        (error.response &&
+                        error.response.data &&
+                        error.response.data.message) ||
+                        error.message ||
+                        error.toString();
+
+                    this.setState({
+                        successful: false,
+                        message: resMessage
+                    });
+                }
+            );
+        }
+    }
 
     render() {
-
         return (
-            <div className="form">
-                <form onSubmit={this.handleSubmit}>
-                    <div className="input-container">
-                        <label>Username </label>
-                        <input type="text" name="username" required />
+        <div className="col-md-12">
+            <div className="card card-container">
+            <img
+                src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+                alt="profile-img"
+                className="profile-img-card"
+            />
+
+            <Form
+                onSubmit={this.handleRegister}
+                ref={c => {
+                this.form = c;
+                }}
+            >
+                {!this.state.successful && (
+                <div>
+                    <div className="form-group">
+                    <label htmlFor="username">Username</label>
+                    <Input
+                        type="text"
+                        className="form-control"
+                        name="username"
+                        value={this.state.username}
+                        onChange={this.onChangeUsername}
+                        validations={[required, vusername]}
+                    />
                     </div>
-                    <div className="input-container">
-                        <label>Email </label>
-                        <input type="email" name="email" required />
+
+                    <div className="form-group">
+                    <label htmlFor="email">Email</label>
+                    <Input
+                        type="text"
+                        className="form-control"
+                        name="email"
+                        value={this.state.email}
+                        onChange={this.onChangeEmail}
+                        validations={[required, email]}
+                    />
                     </div>
-                    <div className="input-container">
-                        <label>Password </label>
-                        <input type="password" name="password" required />
+
+                    <div className="form-group">
+                    <label htmlFor="password">Password</label>
+                    <Input
+                        type="password"
+                        className="form-control"
+                        name="password"
+                        value={this.state.password}
+                        onChange={this.onChangePassword}
+                        validations={[required, vpassword]}
+                    />
                     </div>
-                    <div className="button-container">
-                        <input type="submit" />
+
+                    <div className="form-group">
+                    <button className="btn btn-secondary  btn-block">Sign Up</button>
                     </div>
-                </form>
+                </div>
+                )}
+
+                {this.state.message && (
+                <div className="form-group">
+                    <div
+                    className={
+                        this.state.successful
+                        ? "alert alert-success"
+                        : "alert alert-danger"
+                    }
+                    role="alert"
+                    >
+                    {this.state.message}
+                    </div>
+                </div>
+                )}
+                <CheckButton
+                style={{ display: "none" }}
+                ref={c => {
+                    this.checkBtn = c;
+                }}
+                />
+            </Form>
             </div>
-        )
+        </div>
+        );
     }
 }
 
