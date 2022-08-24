@@ -123,16 +123,16 @@ class RegistrationComponent extends Component {
                     validations={[required]}
                   />
                 </div>
-    
+                <br/>
                 <div className="form-group">
                   <button
-                    className="btn btn-primary btn-block"
+                    className="btn btn-dark btn-block"
                     disabled={this.state.loading}
                   >
                     {this.state.loading && (
                       <span className="spinner-border spinner-border-sm"></span>
                     )}
-                    <span>Login</span>
+                    <span>Войти</span>
                   </button>
                 </div>
     

@@ -1,7 +1,8 @@
 import axios from 'axios';
 import authHeader from './AuthHeader';
 
-const USER_API_BASE_URL = process.env.REACT_APP_API_BASE_URL + 'user/';
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || "http://localhost:8080/";
+const USER_API_BASE_URL = API_BASE_URL + 'user/';
 
 class UserService {
 

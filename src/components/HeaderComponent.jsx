@@ -10,8 +10,6 @@ const HeaderComponent = (props) => {
     let keyword = '';
     let currentUser = AuthService.getCurrentUser();
     let history = useHistory();
-    console.log(JSON.stringify(currentUser));
-
 
     const logout = () => {
         AuthService.logout();
@@ -86,13 +84,13 @@ const HeaderComponent = (props) => {
                                     <div className='navbar-nav ml-auto'>
                                         <li className="nav-item">
                                             <a href="/auth/login" className="nav-link">
-                                                Login
+                                                Войти
                                             </a>
                                         </li>
 
                                         <li className='nav-item'>
                                             <a href="/auth/reg" className="nav-link">
-                                                Sign Up
+                                                Регистрация
                                             </a>
                                         </li>
                                     </div>
